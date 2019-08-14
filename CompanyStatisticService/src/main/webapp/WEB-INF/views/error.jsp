@@ -14,64 +14,9 @@
 	<div class="team" id="team">
 		<div class="container">
 			<div class="agileits-title"> 
-				<h3>Участници</h3> 
-				<form:form class="searchForm" method="GET" action="${contextPath}${accountRegister}" modelAttribute="UserSearch">
-					<table>
-						<tr>
-							<td class="search"><input type="text" name="username" style="margin: 0.5em 0 0 0;"><button type=submit id="searchBtn" name="Search"><span class="fa fa-search"></span></button><td>
-						</tr>
-					</table>		
-				</form:form>
+				<h3>There is an error in your request! See validity of token that you  give us.</h3>
 			</div>
 			<div class="agileits-team-grids">
-				<c:if test="${not empty customers}">
-			        <c:forEach var="custumer" items="${customers}">
-				         <div class="col-md-3 agileits-team-grid">
-							<div class="team-info">
-								<c:choose>
-									<c:when test="${custumer.getAvatar() == 1}">
-										<img src="/resources/avatars/${custumer.getAccount_id()}.jpg" alt="" style="margin-top: 1em;">
-									</c:when>
-									<c:otherwise>
-										<img src="/resources/avatars/simpleAvatar.jpg" alt="" style="margin-top: 1em;">
-									</c:otherwise>
-								</c:choose>								
-								<div class="team-caption"> 
-									<h4>${custumer.getUsername()}</h4>
-									<p>${custumer.getFirstName()} ${custumer.getLastName()}</p>
-									<ul>
-										<li><a href="${contextPath}/sender?mailAdress=${custumer.getEmail()}">${custumer.getEmail()}</a></li>
-										
-											<sec:authorize access="hasRole('ROLE_ADMIN')">
-									        	<c:if test='${custumer.getAuthorities().get(0).getAuthority() == "ROLE_USER"}'>
-									        		<li id="${custumer.getAccount_id()}_period">
-														Ативен период: ${custumer.getActivePeriod()}
-									        			<button class="addPeriod" id="${custumer.getAccount_id()}">
-									        				<i class="fa fa-plus" aria-hidden="true"></i>
-								        				</button>
-									        			<span class="cell toAdmin" id="${custumer.getAccount_id()}_toAdmin">
-									        				<button >Направи го администратор</button>
-									        			</span>
-									        		</li>
-									        	</c:if>
-									        	<c:if test='${custumer.getAuthorities().get(0).getAuthority() == "ROLE_ADMIN"}'>
-									        		<li class="cell toUser" id="${custumer.getAccount_id()}_toUser"><button >Направи го потребител</button></li>
-									        	</c:if>
-											</sec:authorize>
-											<sec:authorize access="hasRole('ROLE_USER')">
-									        	<c:if test='${custumer.getAuthorities().get(0).getAuthority() == "ROLE_USER"}'>
-									        		<li>Ативен период: ${custumer.getActivePeriod()}</li>
-									        	</c:if>
-									        	<c:if test='${custumer.getAuthorities().get(0).getAuthority() == "ROLE_ADMIN"}'>
-									        		<li>Администратор</li>
-									        	</c:if>
-											</sec:authorize>
-									</ul>
-								</div>
-							</div>
-						</div>
-		         	</c:forEach>
-				</c:if>
 				<div class="col-md-3 agileits-team-grid">
 					<div class="team-info">
 						<img src="images/t1.jpg" alt="">

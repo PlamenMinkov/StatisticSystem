@@ -9,7 +9,13 @@
   <jsp:param name="username" value="${user.getUsername()}" />
 </jsp:include>
 
-	<section id="hero" class="stripe sansSerif"></section>
+	<section id="hero" class="stripe sansSerif">
+		<form action="${contextPath}/redirectToStatistic" method="POST">
+			<span>Enter your token:</span>
+			<input type="text" id="token" name="token">
+			<input type="submit" value="View Statistic">
+		</form>
+	</section>
   
   <section class="stripe sansSerif">
     <div class="content padding20 justifyBetween">
