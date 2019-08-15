@@ -8,24 +8,75 @@
 	
 	<script type="text/javascript">
 		document.getElementsByTagName('title')[0].innerHTML = 'Профили';
+		
+		var javaScriptRelease = Date.parse('04 Dec 1995 00:12:00 GMT');
+
+		console.log(javaScriptRelease);
 	</script>
 	
   <!-- team -->
 	<div class="team" id="team">
 		<div class="container">
-			<div class="agileits-title"> 
-				<h3>Companies</h3> 
-				<form:form class="searchForm" method="GET" action="${contextPath}${accountRegister}" modelAttribute="UserSearch">
-					<table>
-						<tr>
-							<td class="search"><input type="text" name="username" style="margin: 0.5em 0 0 0;"><button type=submit id="searchBtn" name="Search"><span class="fa fa-search"></span></button><td>
-						</tr>
-					</table>		
-				</form:form>
-			</div>
 			<div class="agileits-team-grids">
 				<c:choose>
-					<c:when test="${companies.getCompanies().size() > 0}">
+					<c:when test="${symbol == null}">
+						<div class="agileits-title"> 
+							<h3>Companies</h3>
+						</div>
+					
+						<form:form class="searchForm" style="margin-top:20px;">
+							Start date and time: <input type="datetime-local" id="nextTime">
+							End date and time: <input type="datetime-local" id="beforeTime"><br/>
+							
+							<input type="button" id="filterByLastUpdated" value="Filter By LastUpdated">
+							<input type="button" id="filterByLastSateTime" value="Filter By LastSaleTime">		
+							<input type="button" id="removeDateFilter" value="Remmove Filter"><br/>
+							
+							<input type="text" id="symbolFilterValue"  style="margin-top:20px;"><br/>					
+							<input type="button" id="filterBySymbol" value="Filter By Name (symbol)">
+							<input type="button" id="removeNameFilter" value="Remmove Filter"><br/>
+						</form:form>
+					
+						<table class="table">
+							<thead class="thead-dark">
+								<tr>
+									<th scope="col">SYMBOL</th>
+									<th scope="col">SECTOR</th>
+									<th scope="col">BIDPRICE</th>
+									<th scope="col">ASKPRICE</th>
+									<th scope="col">LASTSALESPRICE</th>
+									<th scope="col">LASTUPDATED</th>
+									<th scope="col">LASTSALETIME</th>
+									<th scope="col">VOLUME</th>
+									<th scope="col">LOGO</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="company" items="${companies.getCompanies()}">
+							         <tr>
+										<th scope="row">${company.getSymbol()}</th>
+										<td>${company.getSector()}</td>
+										<td>${company.getBidPrice()}</td>
+										<td>${company.getAskPrice()}</td>
+										<td>${company.getLastSalePrice()}</td>
+										<td class="lastUpdated">${company.getLastUpdated()}</td>
+										<td class="lastSaleTime">${company.getLastSaleTime()}</td>
+										<td>
+											<a href="${contextPath}/statistic/${token}/${company.getSymbol()}">
+												<button>View</button>
+											</a>
+										</td>
+										<td>
+											<img src="https://storage.googleapis.com/iex/api/logos/${company.getSymbol()}.png" 
+												style="max-width: 30px;">
+										</td>
+									</tr>
+					         	</c:forEach>
+							</tbody>
+						</table>
+					</c:when>
+					<c:otherwise>
+						<p><span style="margin:0px auto;">Company: ${companies.getCompanies().get(0).getSymbol()}</span></p>
 						<table class="table">
 							<thead class="thead-dark">
 								<tr>
@@ -59,9 +110,6 @@
 					         	</c:forEach>
 							</tbody>
 						</table>
-					</c:when>
-					<c:otherwise>
-						<p>Given token: ${token} is wrong!</p>
 					</c:otherwise>
 				</c:choose>
 				
@@ -139,10 +187,25 @@
 	        xhr.setRequestHeader(header, token);
 	    });
 	    
-		$(".addPeriod").on('click', function() {
-			var accountId = $(this).attr("id");
+		$("#filterByLastUpdated").on('click', function() {
+			var nextTime = $("#nextTime").val();
+			var beforeTime = $("#beforeTime").val();
 			
-			operationsWithDB.addPeriod(accountId);
+			if(nextTime != "")
+			{
+				var timestamp = 1565884713713;//Date.parse(nextTime);
+				
+				$(".lastUpdated").each(function( index ) {
+					console.log(parseInt($(this).html()) < parseInt(nextTime));
+					  if(parseInt($(this).html()) < parseInt(nextTime) ) {
+						  $(this).closest("tr").hide();
+					  }
+				});
+			}
+			if(beforeTime != "")
+			{
+				var timestamp = Date.parse(beforeTime);
+			}
 		});
 		
 		$(".toAdmin").on('click', function() {
