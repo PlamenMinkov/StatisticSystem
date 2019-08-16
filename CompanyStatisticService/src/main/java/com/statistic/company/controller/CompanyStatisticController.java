@@ -1,7 +1,6 @@
 package com.statistic.company.controller;
 
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,26 +18,24 @@ public class CompanyStatisticController {
 	
 	@Autowired
 	private ICompanyStatisticService statisticService;
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String index(@PathVariable String token, Model model) {
+		
+		return "index";
+	}
 
 	@RequestMapping(value = "/{token}", method = RequestMethod.GET)
-	public String statisticForAll(@PathVariable String token, Model model) 
-					throws NoSuchAlgorithmException, JSONException, IOException {
-		Companies companies = statisticService.readJsonFromUrl("https://cloud.iexapis.com/stable/tops?token=" + token);
+	public String statisticForAll(@PathVariable String token, Model model) {
+		Companies companies = null;
 		
-		model.addAttribute("companies", companies);
-		model.addAttribute("token", token);
+		try {
+			statisticService.readJsonFromUrl("https://cloud.iexapis.com/stable/tops?token=" + token +"&symbols=aapl");
+		} catch (JSONException | IOException e) {
+			model.addAttribute("exception", "Token: " + token + " is invalide!");
+		}
 		
-		return "statistics";
-	}
-	
-	@RequestMapping(value = "/{token}/{symbol}", method = RequestMethod.GET)
-	public String statisticSelectedCompany(@PathVariable String token, @PathVariable String symbol, Model model) 
-					throws NoSuchAlgorithmException, JSONException, IOException {
-		Companies companies = statisticService.readJsonFromUrl("https://cloud.iexapis.com/stable/tops?token=" 
-																+ token + "&symbols=" + symbol);
-		
-		model.addAttribute("companies", companies);
-		model.addAttribute("symbol", symbol);
+		model.addAttribute("companies", null);
 		model.addAttribute("token", token);
 		
 		return "statistics";

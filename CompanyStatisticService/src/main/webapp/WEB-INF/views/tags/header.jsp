@@ -13,19 +13,21 @@
 <link type="text/css" rel="stylesheet" href="<c:url value="/resources/style/colorPresets.css"/>">
 <link type="text/css" rel="stylesheet" href="<c:url value="/resources/style/styles.css"/>">
 
-<script type="text/javascript" src="<c:url value="/resources/script/libs/jquery-1.12.3.js" />" ></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <script type="text/javascript" src="<c:url value="/resources/script/libs/requester.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/resources/script/ajaxRequest/workWithDB.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/resources/script/script.js"/>"></script>
 
 <!-- bootstrap-css -->
-<link href="<c:url value="/resources/style/bootstrap.css" />" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="<c:url value="/resources/style/styleTmpl.css" />" type="text/css" media="all" />
 <link rel="stylesheet" href="<c:url value="/resources/style/chocolat.css" />" type="text/css" media="all">
 <link href="//fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
 <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,700italic,700,400italic,300italic,300' rel='stylesheet' type='text/css'>
 <!-- //font -->
-<script type="text/javascript" src="<c:url value="/resources/script/bootstrap.js" />"></script>
+
 <title><c:out value="${param.title}"/></title>
 
 	<meta name="_csrf" content="${_csrf.token}"/>

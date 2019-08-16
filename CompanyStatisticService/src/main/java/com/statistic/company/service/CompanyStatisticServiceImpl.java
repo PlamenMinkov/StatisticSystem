@@ -31,7 +31,7 @@ public class CompanyStatisticServiceImpl implements ICompanyStatisticService {
 	}
 
 	@Override
-	public Companies readJsonFromUrl(String url) throws IOException, JSONException {
+	public Company readJsonFromUrl(String url) throws IOException, JSONException {
 		InputStream inputStream = null;
 		Companies companies = new Companies();
 		
@@ -39,15 +39,12 @@ public class CompanyStatisticServiceImpl implements ICompanyStatisticService {
 			inputStream = new URL(url).openStream();
 			BufferedReader rd = new BufferedReader(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
 			String jsonText = readAll(rd);
+			System.out.println(jsonText);
 			ObjectMapper mapper = new ObjectMapper();
 			
 			List<Company> participantJsonList = mapper.readValue(jsonText, new TypeReference<List<Company>>(){});
 			
-			for (int i = 0; i < participantJsonList.size(); i++) {
-				companies.setCompany(participantJsonList.get(i));
-			}
-			
-			return companies;
+			return participantJsonList.get(0);
 		} catch(IOException ex) {
 			throw new IOException("Problem on reading JSON from URL: " + url + " \n" + ex.getMessage());
 		} finally {

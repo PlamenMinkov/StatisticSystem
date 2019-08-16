@@ -5,10 +5,10 @@ import java.io.Reader;
 
 import org.json.JSONException;
 
-import com.statistic.company.entity.Companies;
+import com.statistic.company.entity.Company;
 
 public interface ICompanyStatisticService {
 	String readAll(Reader rd) throws IOException;
 	
-	Companies readJsonFromUrl(String url) throws IOException, JSONException;
+	Company readJsonFromUrl(String url) throws IOException, JSONException;
 }
