@@ -33,7 +33,6 @@ public class CompanyStatisticServiceImpl implements ICompanyStatisticService {
 	@Override
 	public Company readJsonFromUrl(String url) throws IOException, JSONException {
 		InputStream inputStream = null;
-		Companies companies = new Companies();
 		
 		try {
 			inputStream = new URL(url).openStream();
@@ -41,7 +40,7 @@ public class CompanyStatisticServiceImpl implements ICompanyStatisticService {
 			String jsonText = readAll(rd);
 			System.out.println(jsonText);
 			ObjectMapper mapper = new ObjectMapper();
-			
+			System.out.println(jsonText);
 			List<Company> participantJsonList = mapper.readValue(jsonText, new TypeReference<List<Company>>(){});
 			
 			if(participantJsonList.size() > 0) {

@@ -17,13 +17,13 @@
 						</div>
 					
 						<form:form class="searchForm" style="margin:20px 0px 3em 0px;">
-							Time for reload: <input type="text" id="nextTime"  placeholder="in seconds">							
-							<input type="button" id="setTimeInterval" class="btn btn-success" value="Set">	
-							<input type="button" id="removeTimeInterval" class="btn btn-danger" value="Remmove" style="margin-right:2em;">
-							
 							Add Company: <input type="text" id="companyName"  style="margin-top:20px;" placeholder="symbol of company">				
 							<input type="button" id="addCompany" class="btn btn-success" value="Add">
-							<input type="button" id="removeCompany" class="btn btn-danger" value="Remmove"><br/>
+							<input type="button" id="removeCompany" class="btn btn-danger" value="Remove" style="margin-right:2em;">
+							
+							Time for reload: <input type="text" id="nextTime"  placeholder="in seconds">							
+							<input type="button" id="setTimeInterval" class="btn btn-success" value="Set">	
+							<input type="button" id="removeTimeInterval" class="btn btn-danger" value="Remove">
 						</form:form>
 					
 						<table class="table" id="statisticTable">
