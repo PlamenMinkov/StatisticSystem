@@ -12,11 +12,16 @@
 <link type="text/css" rel="stylesheet" href="<c:url value="/resources/style/font-awesome.css" />" >
 <link type="text/css" rel="stylesheet" href="<c:url value="/resources/style/colorPresets.css"/>">
 <link type="text/css" rel="stylesheet" href="<c:url value="/resources/style/styles.css"/>">
+<link type="text/css" rel="stylesheet" href="<c:url value="/resources/style/notify.css"/>">
+<link type="text/css" rel="stylesheet" href="<c:url value="/resources/style/prettify.css"/>">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script type="text/javascript" src="<c:url value="/resources/script/libs/requester.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/resources/script/libs/jquery.timer.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/resources/script/libs/notify.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/resources/script/libs/prettify.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/resources/script/ajaxRequest/workWithDB.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/resources/script/script.js"/>"></script>
 

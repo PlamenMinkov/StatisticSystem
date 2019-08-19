@@ -16,14 +16,14 @@
 							<h3>Companies</h3>
 						</div>
 					
-						<form:form class="searchForm" style="margin-top:20px;">
-							Time for reload (in seconds): <input type="text" id="nextTime">							
-							<input type="button" id="setTimeInterval" value="Set">	
-							<input type="button" id="removeDateFilter" value="Remmove Filter"><br/>
+						<form:form class="searchForm" style="margin:20px 0px 3em 0px;">
+							Time for reload: <input type="text" id="nextTime"  placeholder="in seconds">							
+							<input type="button" id="setTimeInterval" class="btn btn-success" value="Set">	
+							<input type="button" id="removeTimeInterval" class="btn btn-danger" value="Remmove" style="margin-right:2em;">
 							
-							Company symbol: <input type="text" id="companyName"  style="margin-top:20px;"><br/>					
-							<input type="button" id="addCompany" value="Add">
-							<input type="button" id="removeCompany" value="Remmove"><br/>
+							Add Company: <input type="text" id="companyName"  style="margin-top:20px;" placeholder="symbol of company">				
+							<input type="button" id="addCompany" class="btn btn-success" value="Add">
+							<input type="button" id="removeCompany" class="btn btn-danger" value="Remmove"><br/>
 						</form:form>
 					
 						<table class="table" id="statisticTable">
@@ -110,12 +110,39 @@
 	<!-- //team -->
 </body>
 <script type="text/javascript">
-	$(document).ready(
-		$("#addCompany").click(function(event) {
-			event.preventDefault();
-			
-			getSymbolStatistic("${token}", $("#companyName").val());
-		})
-	);
+	var count = 0,
+	timer = $.timer(function() {
+		$(".companyRow").each(function() {
+			getSymbolStatistic("${token}", $(this).attr("id"), "update");
+		});
+	});
+
+	$("#addCompany").click(function(event) {
+		event.preventDefault();
+		
+		getSymbolStatistic("${token}", $("#companyName").val(), "add");
+		$("#companyName").val("");
+	})
+	
+	$("#removeCompany").click(function(event) {
+		event.preventDefault();
+		
+		$("#" + $("#companyName").val()).remove();
+		$("#companyName").val("");
+	})
+	
+	$("#setTimeInterval").click(function(event) {
+		event.preventDefault();
+		
+		timer.set({ time : $("#nextTime").val() + "000", autostart : true });
+		$("#nextTime").val("");
+	})
+	
+	$("#removeTimeInterval").click(function(event) {
+		event.preventDefault();
+		$("#nextTime").val("");
+		timer.stop();
+	})
+	
 </script>
 <jsp:include page="tags/footer.jsp" flush="true"></jsp:include>

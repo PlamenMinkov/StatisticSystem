@@ -22,7 +22,11 @@ public class RestWebController {
 
 	@RequestMapping(value="/getSymbolStatistic", method=RequestMethod.POST)
 	public Company getResource(@RequestBody RequestFields requestFields) throws JSONException, IOException {
-		Company company = statisticService.readJsonFromUrl("https://cloud.iexapis.com/stable/tops?token=pk_30d71c84dfb14b7bac65e95725c4b1ef&symbols=aapl");
+		System.out.println(requestFields.getSymbol());
+		System.out.println(requestFields.getToken());
+		
+		Company company = statisticService.readJsonFromUrl("https://cloud.iexapis.com/stable/tops?token=" 
+															+ requestFields.getToken() + "&symbols=" + requestFields.getSymbol());
 		
 		return company;
 	}

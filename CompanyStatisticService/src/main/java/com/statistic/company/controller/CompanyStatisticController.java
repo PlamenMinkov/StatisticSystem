@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.statistic.company.entity.Companies;
+import com.statistic.company.entity.Company;
 import com.statistic.company.service.ICompanyStatisticService;
 
 @Controller
@@ -20,22 +20,31 @@ public class CompanyStatisticController {
 	private ICompanyStatisticService statisticService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index(@PathVariable String token, Model model) {
+	public String index() {
+
+		return "redirect:/validate/none";
+	}
+	
+	@RequestMapping(value = "/validate/{token}", method = RequestMethod.GET)
+	public String validate(@PathVariable String token, Model model) {
+		try {
+			statisticService.readJsonFromUrl("https://cloud.iexapis.com/stable/tops?token=" + token +"&symbols=aapl");
+		} catch (JSONException | IOException e) {
+			model.addAttribute("exception", "Token: '" + token + "' is invalide!");
+			model.addAttribute("token", token);
+			
+			return "statistics";
+		}
 		
-		return "index";
+		
+		return "redirect:/" + token;
 	}
 
 	@RequestMapping(value = "/{token}", method = RequestMethod.GET)
 	public String statisticForAll(@PathVariable String token, Model model) {
-		Companies companies = null;
+		Company company = null;
 		
-		try {
-			statisticService.readJsonFromUrl("https://cloud.iexapis.com/stable/tops?token=" + token +"&symbols=aapl");
-		} catch (JSONException | IOException e) {
-			model.addAttribute("exception", "Token: " + token + " is invalide!");
-		}
-		
-		model.addAttribute("companies", null);
+		model.addAttribute("companies", company);
 		model.addAttribute("token", token);
 		
 		return "statistics";
