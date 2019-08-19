@@ -44,7 +44,11 @@ public class CompanyStatisticServiceImpl implements ICompanyStatisticService {
 			
 			List<Company> participantJsonList = mapper.readValue(jsonText, new TypeReference<List<Company>>(){});
 			
-			return participantJsonList.get(0);
+			if(participantJsonList.size() > 0) {
+				return participantJsonList.get(0);
+			}
+			
+			return null;
 		} catch(IOException ex) {
 			throw new IOException("Problem on reading JSON from URL: " + url + " \n" + ex.getMessage());
 		} finally {

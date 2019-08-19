@@ -1,7 +1,18 @@
 package com.statistic.company.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+@Entity
+@Table(name = "company")
 public class Company implements Serializable{
 
 	/**
@@ -9,22 +20,59 @@ public class Company implements Serializable{
 	 */
 	private static final long serialVersionUID = 7797789865197810728L;
 
+	@Id
+	@Column(name = "symbol")
 	private String symbol;
+	
+	@Transient
 	private String sector;
+	
+	@Transient
 	private String securityType;
+	
+	@Column(name = "bid_price")
 	private double bidPrice;
+	
+	@Transient
 	private int bidSize;
+	
+	@Column(name = "ask_price")
 	private double askPrice;
+	
+	@Transient
 	private int askSize;
+	
+	@Transient
 	private long lastUpdated;
+	
+	@Column(name = "lastSalePrice")
 	private double lastSalePrice;
+	
+	@Transient
 	private double lastSaleSize;
+	
+	@Transient
 	private long lastSaleTime;
+	
+	@Transient
 	private int volume;
+	
+	@OneToMany(orphanRemoval = true)
+	@JoinColumn(name = "symbol")
+	private List<BidPrice> bidPrices;
+	
+	@OneToMany(orphanRemoval = true)
+	@JoinColumn(name = "symbol")
+	private List<AskPrice> askPrices;
+	
+	@OneToMany(orphanRemoval = true)
+	@JoinColumn(name = "symbol")
+	private List<LastSalePrice> lastSalePrices;
 	
 	public String getSymbol() {
 		return symbol;
 	}
+	
 	public void setSymbol(String symbol) {
 		this.symbol = symbol;
 	}
@@ -96,6 +144,25 @@ public class Company implements Serializable{
 	}
 	public void setLastSaleSize(double lastSaleSize) {
 		this.lastSaleSize = lastSaleSize;
+	}
+	
+	public List<BidPrice> getBidPrices() {
+		return bidPrices;
+	}
+	public void setBidPrices(List<BidPrice> bidPrices) {
+		this.bidPrices = bidPrices;
+	}
+	public List<AskPrice> getAskPrices() {
+		return askPrices;
+	}
+	public void setAskPrices(List<AskPrice> askPrices) {
+		this.askPrices = askPrices;
+	}
+	public List<LastSalePrice> getLastSalePrices() {
+		return lastSalePrices;
+	}
+	public void setLastSalePrices(List<LastSalePrice> lastSalePrices) {
+		this.lastSalePrices = lastSalePrices;
 	}
 	
 	@Override
