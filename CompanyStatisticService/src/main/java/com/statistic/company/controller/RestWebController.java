@@ -26,7 +26,8 @@ public class RestWebController {
 		System.out.println(requestFields.getToken());
 		
 		String request = "https://cloud.iexapis.com/stable/stock/" + requestFields.getSymbol() + "/quote?token=" + requestFields.getToken() 
-							+ "&filter=symbol";
+							+ "&filter=symbol,companyName,calculationPrice,latestPrice,"
+							+ "iexRealtimePrice,delayedPrice,extendedPrice,iexBidPrice,iexAskPrice";
 		
 		Company company = statisticService.readJsonFromUrl(request);
 		

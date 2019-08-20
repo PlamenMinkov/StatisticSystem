@@ -29,11 +29,16 @@
 						<table class="table" id="statisticTable">
 							<thead class="thead-dark">
 								<tr>
-									<th scope="col">SYMBOL</th>
-									<th scope="col">BIDPRICE</th>
-									<th scope="col">ASKPRICE</th>
-									<th scope="col">LASTSALESPRICE</th>
-									<th scope="col">LOGO</th>
+									<th scope="col">Symbol</th>
+									<th scope="col">Name</th>
+									<th scope="col">CalculationPrice</th>
+									<th scope="col">LatestPrice</th>
+									<th scope="col">IexRealtimePrice</th>
+									<th scope="col">DelayedPrice</th>
+									<th scope="col">ExtendedPrice</th>
+									<th scope="col">IexBidPrice</th>
+									<th scope="col">IexAskPrice</th>
+									<th scope="col">Logo</th>
 								</tr>
 							</thead>
 							<tbody>

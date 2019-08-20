@@ -28,7 +28,8 @@ public class CompanyStatisticController {
 	@RequestMapping(value = "/validate/{token}", method = RequestMethod.GET)
 	public String validate(@PathVariable String token, Model model) {
 		try {
-			statisticService.readJsonFromUrl("https://cloud.iexapis.com/stable/tops?token=" + token +"&symbols=aapl");
+			String request = "https://cloud.iexapis.com/stable/stock/aapl/quote?token=" + token	+ "&filter=symbol";
+			statisticService.readJsonFromUrl(request);
 		} catch (JSONException | IOException e) {
 			model.addAttribute("exception", "Token: '" + token + "' is invalide!");
 			model.addAttribute("token", token);

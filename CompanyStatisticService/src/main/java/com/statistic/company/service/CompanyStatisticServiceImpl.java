@@ -38,16 +38,11 @@ public class CompanyStatisticServiceImpl implements ICompanyStatisticService {
 			inputStream = new URL(url).openStream();
 			BufferedReader rd = new BufferedReader(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
 			String jsonText = readAll(rd);
-			System.out.println(jsonText);
 			ObjectMapper mapper = new ObjectMapper();
-			System.out.println(jsonText);
-			List<Company> participantJsonList = mapper.readValue(jsonText, new TypeReference<List<Company>>(){});
 			
-			if(participantJsonList.size() > 0) {
-				return participantJsonList.get(0);
-			}
+			Company participantJsonList = mapper.readValue(jsonText, new TypeReference<Company>(){});
 			
-			return null;
+			return participantJsonList;
 		} catch(IOException ex) {
 			throw new IOException("Problem on reading JSON from URL: " + url + " \n" + ex.getMessage());
 		} finally {

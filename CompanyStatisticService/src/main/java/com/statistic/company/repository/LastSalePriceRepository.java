@@ -7,13 +7,13 @@ import javax.transaction.Transactional;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
-import com.statistic.company.entity.LastSalePrice;
+import com.statistic.company.entity.CalculationPrice;
 
 @Repository
 @Transactional
-public interface LastSalePriceRepository  extends PagingAndSortingRepository<LastSalePrice, Long>
+public interface LastSalePriceRepository  extends PagingAndSortingRepository<CalculationPrice, Long>
 {	
-	List<LastSalePrice> findBySymbol(String symbol);
+	List<CalculationPrice> findBySymbol(String symbol);
 	
 //	@Query(value =  "SELECT image_id FROM image ORDER BY image_id DESC LIMIT 1", nativeQuery = true)
 //	Integer getLastImageId();

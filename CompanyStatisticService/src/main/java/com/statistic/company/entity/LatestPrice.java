@@ -10,14 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "bid_price")
-public class BidPrice implements Serializable {
+@Table(name = "latest_price")
+public class LatestPrice implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "bid_price_id")
+	@Column(name = "latest_price_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int bidPriceId;
+	private int latestPriceId;
 	
 	@Column(name = "symbol")
 	private String symbol;	
@@ -25,12 +25,12 @@ public class BidPrice implements Serializable {
 	@Column(name = "value")
 	private double value;
 
-	public int getBidPriceId() {
-		return bidPriceId;
+	public int getLatestPriceId() {
+		return latestPriceId;
 	}
 
-	public void setBidPriceId(int bidPriceId) {
-		this.bidPriceId = bidPriceId;
+	public void setLatestPriceId(int latestPriceId) {
+		this.latestPriceId = latestPriceId;
 	}
 
 	public String getSymbol() {

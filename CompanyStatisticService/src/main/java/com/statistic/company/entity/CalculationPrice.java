@@ -10,14 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ask_price")
-public class AskPrice implements Serializable {
+@Table(name = "calculation_price")
+public class CalculationPrice implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "ask_price_id")
+	@Column(name = "calculation_price")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int askPriceId;
+	private int calculationPriceId;
 	
 	@Column(name = "symbol")
 	private String symbol;	
@@ -25,12 +25,12 @@ public class AskPrice implements Serializable {
 	@Column(name = "value")
 	private double value;
 
-	public int getAskPriceId() {
-		return askPriceId;
+	public int getCalculationPriceId() {
+		return calculationPriceId;
 	}
 
-	public void setAskPriceId(int askPriceId) {
-		this.askPriceId = askPriceId;
+	public void setCalculationPriceId(int calculationPriceId) {
+		this.calculationPriceId = calculationPriceId;
 	}
 
 	public String getSymbol() {
