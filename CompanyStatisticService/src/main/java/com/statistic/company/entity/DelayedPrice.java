@@ -23,7 +23,14 @@ public class DelayedPrice implements Serializable {
 	private String symbol;	
 	
 	@Column(name = "value")
-	private double value;
+	private Double value;
+	
+	public DelayedPrice() {}
+	
+	public DelayedPrice(String symbol, Double value) {
+		this.symbol = symbol;
+		this.value = value;
+	}
 
 	public int getDelayedPriceId() {
 		return delayedPriceId;
@@ -41,11 +48,11 @@ public class DelayedPrice implements Serializable {
 		this.symbol = symbol;
 	}
 
-	public double getValue() {
+	public Double getValue() {
 		return value;
 	}
 
-	public void setValue(double value) {
+	public void setValue(Double value) {
 		this.value = value;
 	}
 

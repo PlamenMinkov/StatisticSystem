@@ -20,6 +20,8 @@ function getSymbolStatistic(token, symbol, command) {
         mimeType: 'application/json',
 		success : function(result) 
 		{
+			updateCompanyDataInDB(result);
+			
 			if(command == "add")
 			{
 				var row = "<tr class=\"companyRow\" id=\"" + result["symbol"].toLowerCase() + "\">" 
@@ -50,6 +52,25 @@ function getSymbolStatistic(token, symbol, command) {
 		error : function(e) 
 		{
 			$.notify("There is no result for this symbol!", {align:"center", verticalAlign:"top", type: "warning"});
+		}
+	});
+}
+
+function updateCompanyDataInDB(company) {	
+	$.ajax({
+		type : "POST",					
+		url : "request/updateCompanyDataInDB",
+		dataType:'json',
+		data: JSON.stringify(company),
+        contentType: 'application/json',
+        mimeType: 'application/json',
+		success : function(result) 
+		{
+			console.log("Successful updating data for company: " + result);
+		},
+		error : function(e) 
+		{
+			console.log("Error in updating data for company: " + company["companyName"]);
 		}
 	});
 }

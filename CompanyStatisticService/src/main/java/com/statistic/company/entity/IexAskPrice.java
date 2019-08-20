@@ -23,7 +23,14 @@ public class IexAskPrice implements Serializable {
 	private String symbol;	
 	
 	@Column(name = "value")
-	private double value;
+	private Double value;
+	
+	public IexAskPrice() {}
+	
+	public IexAskPrice(String symbol, Double value) {
+		this.symbol = symbol;
+		this.value = value;
+	}
 
 	public int getIexAskPriceId() {
 		return iexAskPriceId;
@@ -41,11 +48,11 @@ public class IexAskPrice implements Serializable {
 		this.symbol = symbol;
 	}
 
-	public double getValue() {
+	public Double getValue() {
 		return value;
 	}
 
-	public void setValue(double value) {
+	public void setValue(Double value) {
 		this.value = value;
 	}
 

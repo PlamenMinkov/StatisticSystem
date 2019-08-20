@@ -1,10 +1,13 @@
 package com.statistic.company.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -31,10 +34,10 @@ public class Company implements Serializable{
 	private String calculationPrice;
 	
 	@Column(name = "latestPrice")
-	private double latestPrice;
+	private Double latestPrice;
 	
 	@Column(name = "iexRealtimePrice")
-	private double iexRealtimePrice;
+	private Double iexRealtimePrice;
 	
 	@Column(name = "delayedPrice")
 	private Double delayedPrice;
@@ -43,38 +46,28 @@ public class Company implements Serializable{
 	private Double extendedPrice;
 	
 	@Column(name = "iexBidPrice")
-	private double iexBidPrice;
+	private Double iexBidPrice;
 	
 	@Column(name = "iexAskPrice")
-	private double iexAskPrice;
+	private Double iexAskPrice;
 	
-	@OneToMany(orphanRemoval = true)
-	@JoinColumn(name = "symbol")
-	private List<CalculationPrice> calculationPriceList;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "symbol")
+	private List<LatestPrice> lastestPriceList = new ArrayList<LatestPrice>();
 	
-	@OneToMany(orphanRemoval = true)
-	@JoinColumn(name = "symbol")
-	private List<LatestPrice> lastestPriceList;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "symbol")
+	private List<IexRealtimePrice> iexRealtimePriceList = new ArrayList<IexRealtimePrice>();
 	
-	@OneToMany(orphanRemoval = true)
-	@JoinColumn(name = "symbol")
-	private List<IexRealtimePrice> iexRealtimePriceList;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "symbol")
+	private List<DelayedPrice> delayedPriceList = new ArrayList<DelayedPrice>();
 	
-	@OneToMany(orphanRemoval = true)
-	@JoinColumn(name = "symbol")
-	private List<DelayedPrice> delayedPriceList;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "symbol")
+	private List<ExtendedPrice> extendedPriceList = new ArrayList<ExtendedPrice>();
 	
-	@OneToMany(orphanRemoval = true)
-	@JoinColumn(name = "symbol")
-	private List<ExtendedPrice> extendedPriceList;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "symbol")
+	private List<IexBidPrice> iexBidPriceList = new ArrayList<IexBidPrice>();
 	
-	@OneToMany(orphanRemoval = true)
-	@JoinColumn(name = "symbol")
-	private List<IexBidPrice> iexBidPriceList;
-	
-	@OneToMany(orphanRemoval = true)
-	@JoinColumn(name = "symbol")
-	private List<IexAskPrice> iexAskPriceList;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "symbol")
+	private List<IexAskPrice> iexAskPriceList = new ArrayList<IexAskPrice>();
 	
 	public String getSymbol() {
 		return symbol;
@@ -100,19 +93,19 @@ public class Company implements Serializable{
 		this.calculationPrice = calculationPrice;
 	}
 
-	public double getLatestPrice() {
+	public Double getLatestPrice() {
 		return latestPrice;
 	}
 
-	public void setLatestPrice(double latestPrice) {
+	public void setLatestPrice(Double latestPrice) {
 		this.latestPrice = latestPrice;
 	}
 
-	public double getIexRealtimePrice() {
+	public Double getIexRealtimePrice() {
 		return iexRealtimePrice;
 	}
 
-	public void setIexRealtimePrice(double iexRealtimePrice) {
+	public void setIexRealtimePrice(Double iexRealtimePrice) {
 		this.iexRealtimePrice = iexRealtimePrice;
 	}
 
@@ -132,28 +125,20 @@ public class Company implements Serializable{
 		this.extendedPrice = extendedPrice;
 	}
 
-	public double getIexBidPrice() {
+	public Double getIexBidPrice() {
 		return iexBidPrice;
 	}
 
-	public void setIexBidPrice(double iexBidPrice) {
+	public void setIexBidPrice(Double iexBidPrice) {
 		this.iexBidPrice = iexBidPrice;
 	}
 
-	public double getIexAskPrice() {
+	public Double getIexAskPrice() {
 		return iexAskPrice;
 	}
 
 	public void setIexAskPrice(double iexAskPrice) {
 		this.iexAskPrice = iexAskPrice;
-	}
-
-	public List<CalculationPrice> getCalculationPriceList() {
-		return calculationPriceList;
-	}
-
-	public void setCalculationPriceList(List<CalculationPrice> calculationPriceList) {
-		this.calculationPriceList = calculationPriceList;
 	}
 
 	public List<LatestPrice> getLastestPriceList() {

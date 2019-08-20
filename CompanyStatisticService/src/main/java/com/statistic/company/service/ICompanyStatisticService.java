@@ -11,4 +11,6 @@ public interface ICompanyStatisticService {
 	String readAll(Reader rd) throws IOException;
 	
 	Company readJsonFromUrl(String url) throws IOException, JSONException;
+	
+	void SaveDataInDB(Company company);
 }

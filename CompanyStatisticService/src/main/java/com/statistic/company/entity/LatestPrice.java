@@ -23,7 +23,14 @@ public class LatestPrice implements Serializable {
 	private String symbol;	
 	
 	@Column(name = "value")
-	private double value;
+	private Double value;
+	
+	public LatestPrice() {}
+	
+	public LatestPrice(String symbol, Double value) {
+		this.symbol = symbol;
+		this.value = value;
+	}
 
 	public int getLatestPriceId() {
 		return latestPriceId;
@@ -41,11 +48,11 @@ public class LatestPrice implements Serializable {
 		this.symbol = symbol;
 	}
 
-	public double getValue() {
+	public Double getValue() {
 		return value;
 	}
 
-	public void setValue(double value) {
+	public void setValue(Double value) {
 		this.value = value;
 	}
 

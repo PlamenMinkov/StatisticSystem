@@ -33,4 +33,12 @@ public class RestWebController {
 		
 		return company;
 	}
+	
+	@RequestMapping(value="/updateCompanyDataInDB", method=RequestMethod.POST)
+	public Company updateCompanyDataInDB(@RequestBody Company company) throws JSONException, IOException {
+		
+		statisticService.SaveDataInDB(company);
+		
+		return company;
+	}
 }

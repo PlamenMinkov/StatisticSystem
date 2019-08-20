@@ -7,19 +7,26 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
 import java.nio.charset.Charset;
-import java.util.List;
 
 import org.json.JSONException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.statistic.company.entity.Companies;
 import com.statistic.company.entity.Company;
+import com.statistic.company.repository.CompanyRepository;
 
 @Service
 public class CompanyStatisticServiceImpl implements ICompanyStatisticService {
 
+	@Autowired
+	private CompanyRepository companyRepository;
+	
+	@Autowired
+	private IPricesService priceService;
+	
+	
 	@Override
 	public String readAll(Reader rd) throws IOException {
 		StringBuilder sb = new StringBuilder();
@@ -51,6 +58,47 @@ public class CompanyStatisticServiceImpl implements ICompanyStatisticService {
 				inputStream.close();
 			}			
 		}
+	}
+
+	@Override
+	public void SaveDataInDB(Company company) {
+		String symbol = company.getSymbol();
+		Company thisCompany = companyRepository.findBySymbol(symbol);
+		companyRepository.save(company);
+		
+		if(thisCompany != null) {
+			if(company.getDelayedPrice() != null && !company.getDelayedPrice().equals(thisCompany.getDelayedPrice())) {
+				priceService.addDeayedPrice(symbol, company.getDelayedPrice());
+			}
+			
+			if(company.getExtendedPrice() != null &&!company.getExtendedPrice().equals(thisCompany.getExtendedPrice())) {
+				priceService.addExtendedPrice(symbol, company.getExtendedPrice());
+			}
+			
+			if(company.getIexAskPrice() != null && !company.getIexAskPrice().equals(thisCompany.getIexAskPrice())) {
+				priceService.addIexAskPrice(symbol, company.getIexAskPrice());
+			}
+			
+			if(company.getIexBidPrice() != null &&!company.getIexBidPrice().equals(thisCompany.getIexBidPrice())) {
+				priceService.addIexBidPrice(symbol, company.getIexBidPrice());
+			}
+			
+			if(company.getIexRealtimePrice() != null && !company.getIexRealtimePrice().equals(thisCompany.getIexRealtimePrice())) {
+				priceService.addIexRealtimePrice(symbol, company.getIexRealtimePrice());
+			}
+			
+			if(company.getLatestPrice() != null && !company.getLatestPrice().equals(thisCompany.getLatestPrice())) {
+				priceService.addLatestPrice(symbol, company.getLatestPrice());
+			}
+		}
+		else {
+			priceService.addDeayedPrice(symbol, company.getDelayedPrice());
+			priceService.addExtendedPrice(symbol, company.getExtendedPrice());
+			priceService.addIexAskPrice(symbol, company.getIexAskPrice());
+			priceService.addIexBidPrice(symbol, company.getIexBidPrice());
+			priceService.addIexRealtimePrice(symbol, company.getIexRealtimePrice());
+			priceService.addLatestPrice(symbol, company.getLatestPrice());
+		}		
 	}
 
 }
