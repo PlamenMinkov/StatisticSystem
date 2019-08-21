@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class GatewayController  implements ErrorController {
+public class GatewayController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) throws NoSuchAlgorithmException {
@@ -25,16 +25,6 @@ public class GatewayController  implements ErrorController {
 	{
 		String token = request.getParameter("token");
 
-		return "redirect:/statistic/validate/" + token;
-	}
-	
-	@RequestMapping("/error")
-	public String handleError() {
-		return "<h1>Something went wrong!</h1>";
-	}
-
-	@Override
-	public String getErrorPath() {
-		return "/error";
+		return "redirect:/statistic/" + token;
 	}
 }

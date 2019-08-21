@@ -17,7 +17,7 @@ public class TemplateConfig extends WebMvcConfigurerAdapter
 	public UrlBasedViewResolver setupViewResolver()
 	{
 		UrlBasedViewResolver resolver = new UrlBasedViewResolver();
-		resolver.setPrefix("/WEB-INF/views/");
+		resolver.setPrefix("/views/");
 		resolver.setSuffix(".jsp");
 		resolver.setViewClass(JstlView.class);
 		return resolver;

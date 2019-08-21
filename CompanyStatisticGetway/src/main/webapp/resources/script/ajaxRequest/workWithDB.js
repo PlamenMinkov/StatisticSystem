@@ -35,7 +35,7 @@ function getSymbolStatistic(token, symbol, command) {
 				+ "<td id=\"iexBidPrice_" + result["symbol"] + "\">" + result["iexBidPrice"] + "</td>"
 				+ "<td id=\"iexAskPrice_" + result["symbol"] + "\">" + result["iexAskPrice"] + "</td>"
 				+ "<td><img src=\"https://storage.googleapis.com/iex/api/logos/" + result["symbol"] + ".png\" style=\"max-height: 40px;\"></td>"
-				+ "<td><a href=\"/history/" + result["symbol"] + "/" + token + "\">Price History</a></td></tr>";
+				+ "<td><a href=\"/statistic/history/" + result["symbol"] + "/" + token + "\">Price History</a></td></tr>";
 				
 				$("#statisticTable tbody").append(row); 
 			}

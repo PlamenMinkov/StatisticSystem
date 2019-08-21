@@ -50,7 +50,7 @@
 	        <span class="topStripeIcon"><span class="fa fa-search"></span></span>
 	
 	      </div>
-	      <div class="logo"><a class="prColBGHover" href="${contextPath}/${token}">
+	      <div class="logo"><a class="prColBGHover" href="/">
 								<span class="robotoSlab">Company</span> <span class="prCol">Statistic</span>
 							</a></div>
 	    </div>
@@ -59,7 +59,7 @@
 	  <section class="stripe sansSerif blackBG">
 	    <div class="content">
 	      <ul class="menu">
-	        <li><a class="prColBGHover" href="#"></a></li>
+	        <li><a class="prColBGHover" href="/statistic${contextPath}/${token}">Statistics</a></li>
 	      </ul>
 	    </div>
 	  </section>

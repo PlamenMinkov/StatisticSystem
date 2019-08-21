@@ -18,34 +18,16 @@ public class CompanyStatisticController {
 	
 	@Autowired
 	private ICompanyStatisticService statisticService;
-	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String index() {
 
-		return "redirect:/validate/none";
-	}
-	
-	@RequestMapping(value = "/validate/{token}", method = RequestMethod.GET)
-	public String validate(@PathVariable String token, Model model) {
+	@RequestMapping(value = "/{token}", method = RequestMethod.GET)
+	public String statisticForAll(@PathVariable String token, Model model) {
 		try {
 			String request = "https://cloud.iexapis.com/stable/stock/aapl/quote?token=" + token	+ "&filter=symbol";
 			statisticService.readJsonFromUrl(request);
 		} catch (JSONException | IOException e) {
 			model.addAttribute("exception", "Token: '" + token + "' is invalide!");
-			model.addAttribute("token", token);
-			
-			return "statistics";
 		}
 		
-		
-		return "redirect:/" + token;
-	}
-
-	@RequestMapping(value = "/{token}", method = RequestMethod.GET)
-	public String statisticForAll(@PathVariable String token, Model model) {
-		Company company = null;
-		
-		model.addAttribute("companies", company);
 		model.addAttribute("token", token);
 		
 		return "statistics";
