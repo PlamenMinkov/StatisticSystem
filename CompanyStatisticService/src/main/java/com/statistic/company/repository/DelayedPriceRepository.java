@@ -16,5 +16,5 @@ public interface DelayedPriceRepository  extends CrudRepository<DelayedPrice, Lo
 	DelayedPrice findLastBySymbol(String symbol);
 	
 	@Query(value =  "DELETE FROM `iex_ask_price` WHERE symbol = :symbol ORDER BY `iex_ask_price_id` ASC LIMIT 1", nativeQuery = true)
-	Integer deleteOldestRecord(@Param("symbol") int symbol);
+	Integer deleteOldestRecord(@Param("symbol") String symbol);
 }

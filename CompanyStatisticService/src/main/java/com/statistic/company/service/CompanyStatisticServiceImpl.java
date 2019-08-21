@@ -71,26 +71,56 @@ public class CompanyStatisticServiceImpl implements ICompanyStatisticService {
 		
 		if(thisCompany != null) {
 			if(company.getDelayedPrice() != null && !company.getDelayedPrice().equals(thisCompany.getDelayedPrice())) {
+				if(thisCompany.getDelayedPriceList().size() > 99)
+				{
+					priceService.removeFromDeayedPrice(symbol);
+				}
+				
 				priceService.addDeayedPrice(symbol, company.getDelayedPrice());
 			}
 			
 			if(company.getExtendedPrice() != null &&!company.getExtendedPrice().equals(thisCompany.getExtendedPrice())) {
+				if(thisCompany.getExtendedPriceList().size() > 99)
+				{
+					priceService.removeFromExtendedPrice(symbol);
+				}
+				
 				priceService.addExtendedPrice(symbol, company.getExtendedPrice());
 			}
 			
 			if(company.getIexAskPrice() != null && !company.getIexAskPrice().equals(thisCompany.getIexAskPrice())) {
+				if(thisCompany.getIexAskPriceList().size() > 99)
+				{
+					priceService.removeFromIexAskPrice(symbol);
+				}
+				
 				priceService.addIexAskPrice(symbol, company.getIexAskPrice());
 			}
 			
 			if(company.getIexBidPrice() != null &&!company.getIexBidPrice().equals(thisCompany.getIexBidPrice())) {
+				if(thisCompany.getIexBidPriceList().size() > 99)
+				{
+					priceService.removeFromIexBidPrice(symbol);
+				}
+				
 				priceService.addIexBidPrice(symbol, company.getIexBidPrice());
 			}
 			
 			if(company.getIexRealtimePrice() != null && !company.getIexRealtimePrice().equals(thisCompany.getIexRealtimePrice())) {
+				if(thisCompany.getIexRealtimePriceList().size() > 99)
+				{
+					priceService.removeFromIexRealtimePrice(symbol);
+				}
+				
 				priceService.addIexRealtimePrice(symbol, company.getIexRealtimePrice());
 			}
 			
 			if(company.getLatestPrice() != null && !company.getLatestPrice().equals(thisCompany.getLatestPrice())) {
+				if(thisCompany.getLatestPriceList().size() > 99)
+				{
+					priceService.removeFromLatestPrice(symbol);
+				}
+				
 				priceService.addLatestPrice(symbol, company.getLatestPrice());
 			}
 		}
@@ -115,6 +145,11 @@ public class CompanyStatisticServiceImpl implements ICompanyStatisticService {
 		Files.write(Paths.get("statistic.json"), selectedCompanies.toString().getBytes());
 		
 		return selectedCompanies;
+	}
+
+	@Override
+	public Company findCompanyBySymbol(String symbol) {
+		return companyRepository.findBySymbol(symbol);
 	}
 
 }

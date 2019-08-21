@@ -18,5 +18,5 @@ public interface LatestPriceRepository  extends PagingAndSortingRepository<Lates
 	List<LatestPrice> findBySymbol(String symbol);
 
 	@Query(value =  "DELETE FROM `latest_price` WHERE symbol = :symbol ORDER BY `latest_price_id` ASC LIMIT 1", nativeQuery = true)
-	Integer deleteOldestRecord(@Param("symbol") int symbol);
+	Integer deleteOldestRecord(@Param("symbol") String symbol);
 }

@@ -13,15 +13,15 @@ public interface IPricesService {
 	
 	void addLatestPrice(String symbol, Double value);
 	
-	void validateCountOfDeayedPrice();
+	void removeFromDeayedPrice(String symbol);
 	
-	void validateCountOfExtendedPrice();
+	void removeFromExtendedPrice(String symbol);
 	
-	void validateCountOfIexAskPrice();
+	void removeFromIexAskPrice(String symbol);
 	
-	void validateCountOfIexBidPrice();
+	void removeFromIexBidPrice(String symbol);
 	
-	void validateCountOfIexRealtimePrice();
+	void removeFromIexRealtimePrice(String symbol);
 	
-	void validateCountOfLatestPrice();
+	void removeFromLatestPrice(String symbol);
 }

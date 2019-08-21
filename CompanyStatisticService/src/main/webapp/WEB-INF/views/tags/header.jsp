@@ -18,7 +18,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<script type="text/javascript" src="<c:url value="/resources/script/libs/requester.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/resources/script/libs/jquery.timer.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/resources/script/libs/notify.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/resources/script/libs/prettify.js"/>"></script>
@@ -51,14 +50,16 @@
 	        <span class="topStripeIcon"><span class="fa fa-search"></span></span>
 	
 	      </div>
-	      <div class="logo"><span class="robotoSlab">Company</span> <span class="prCol">Statistic</span></div>
+	      <div class="logo"><a class="prColBGHover" href="${contextPath}/${token}">
+								<span class="robotoSlab">Company</span> <span class="prCol">Statistic</span>
+							</a></div>
 	    </div>
 	  </section>
 	
 	  <section class="stripe sansSerif blackBG">
 	    <div class="content">
 	      <ul class="menu">
-	        <li><a class="prColBGHover" href="${contextPath}/">Companies Statistic</a></li>
+	        <li><a class="prColBGHover" href="#"></a></li>
 	      </ul>
 	    </div>
 	  </section>

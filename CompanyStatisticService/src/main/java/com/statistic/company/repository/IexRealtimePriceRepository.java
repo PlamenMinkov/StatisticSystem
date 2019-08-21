@@ -18,5 +18,5 @@ public interface IexRealtimePriceRepository  extends PagingAndSortingRepository<
 	List<IexRealtimePrice> findBySymbol(String symbol);
 
 	@Query(value =  "DELETE FROM `iex_realtime_price` WHERE symbol = :symbol ORDER BY `iex_realtime_price_id` ASC LIMIT 1", nativeQuery = true)
-	Integer deleteOldestRecord(@Param("symbol") int symbol);
+	Integer deleteOldestRecord(@Param("symbol") String symbol);
 }

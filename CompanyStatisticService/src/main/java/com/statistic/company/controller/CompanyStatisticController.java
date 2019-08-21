@@ -50,4 +50,14 @@ public class CompanyStatisticController {
 		
 		return "statistics";
 	}
+	
+	@RequestMapping(value = "/history/{symbol}/{token}", method = RequestMethod.GET)
+	public String priceHistory(@PathVariable String symbol, @PathVariable String token, Model model) {
+		Company company = statisticService.findCompanyBySymbol(symbol);
+		
+		model.addAttribute("company", company);
+		model.addAttribute("token", token);
+		
+		return "priceHistory";
+	}
 }

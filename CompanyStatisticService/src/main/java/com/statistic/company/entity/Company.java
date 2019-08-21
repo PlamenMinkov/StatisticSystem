@@ -138,11 +138,11 @@ public class Company implements Serializable{
 		this.iexAskPrice = iexAskPrice;
 	}
 
-	public List<LatestPrice> getLastestPriceList() {
+	public List<LatestPrice> getLatestPriceList() {
 		return lastestPriceList;
 	}
 
-	public void setLastestPriceList(List<LatestPrice> lastestPriceList) {
+	public void setLatestPriceList(List<LatestPrice> lastestPriceList) {
 		this.lastestPriceList = lastestPriceList;
 	}
 
@@ -189,9 +189,7 @@ public class Company implements Serializable{
 	@Override
     public String toString() 
     { 
-        return "{ "
-        		+ "\"symbol\": " +  symbol
-		        + ", \"companyName\": " +  companyName
+        return "{ \"companyName\": " +  companyName
 		        + ", \"calculationPrice\": " +  calculationPrice
 		        + ", \"latestPrice\": " +  latestPrice
 		        + ", \"iexRealtimePrice\": " +  iexRealtimePrice

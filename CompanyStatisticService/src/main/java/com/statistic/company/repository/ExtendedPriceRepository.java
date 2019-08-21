@@ -18,5 +18,5 @@ public interface ExtendedPriceRepository  extends PagingAndSortingRepository<Ext
 	List<ExtendedPrice> findBySymbol(String symbol);
 	
 	@Query(value =  "DELETE FROM `extended_price` WHERE symbol = :symbol ORDER BY `extended_price_id` ASC LIMIT 1", nativeQuery = true)
-	Integer deleteOldestRecord(@Param("symbol") int symbol);
+	Integer deleteOldestRecord(@Param("symbol") String symbol);
 }

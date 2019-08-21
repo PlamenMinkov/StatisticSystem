@@ -14,7 +14,6 @@
 <link type="text/css" rel="stylesheet" href="<c:url value="/resources/style/styles.css"/>">
 
 <script type="text/javascript" src="<c:url value="/resources/script/libs/jquery-1.12.3.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/script/libs/requester.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/resources/script/ajaxRequest/workWithDB.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/resources/script/script.js"/>"></script>
 
@@ -51,7 +50,7 @@
 	  <section class="stripe sansSerif blackBG">
 	    <div class="content">
 	      <ul class="menu">
-	        <li><a class="prColBGHover" href="${contextPath}/">Companies Statistic</a></li>
+	        <li><a class="prColBGHover" href="${contextPath}/"></a></li>
 	      </ul>
 	    </div>
 	  </section>

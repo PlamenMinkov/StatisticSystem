@@ -4,7 +4,9 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-<jsp:include page="tags/header.jsp" flush="true"></jsp:include>
+<jsp:include page="tags/header.jsp" >
+  <jsp:param name="title" value="Company Statistic"/>
+</jsp:include>
 
   <!-- team -->
 	<div class="team" id="team">
@@ -39,6 +41,7 @@
 									<th scope="col">IexBidPrice</th>
 									<th scope="col">IexAskPrice</th>
 									<th scope="col">Logo</th>
+									<th scope="col">History</th>
 								</tr>
 							</thead>
 							<tbody>

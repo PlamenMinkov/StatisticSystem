@@ -13,6 +13,8 @@ public interface ICompanyStatisticService {
 	
 	Company readJsonFromUrl(String url) throws IOException, JSONException;
 	
+	Company findCompanyBySymbol(String symbol);
+	
 	void saveDataInDB(Company company);
 	
 	Companies exportCompaniesToJSON(String[] symbolsArr) throws IOException;

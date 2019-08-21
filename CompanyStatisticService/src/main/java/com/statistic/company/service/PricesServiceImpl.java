@@ -74,38 +74,32 @@ public class PricesServiceImpl implements IPricesService {
 	}
 
 	@Override
-	public void validateCountOfDeayedPrice() {
-		// TODO Auto-generated method stub
-		
+	public void removeFromDeayedPrice(String symbol) {
+		delayedPriceRepository.deleteOldestRecord(symbol);
 	}
 
 	@Override
-	public void validateCountOfExtendedPrice() {
-		// TODO Auto-generated method stub
-		
+	public void removeFromExtendedPrice(String symbol) {
+		extendedPriceRepository.deleteOldestRecord(symbol);
 	}
 
 	@Override
-	public void validateCountOfIexAskPrice() {
-		// TODO Auto-generated method stub
-		
+	public void removeFromIexAskPrice(String symbol) {
+		iexAskPriceRepository.deleteOldestRecord(symbol);
 	}
 
 	@Override
-	public void validateCountOfIexBidPrice() {
-		// TODO Auto-generated method stub
-		
+	public void removeFromIexBidPrice(String symbol) {
+		iexBidPriceRepository.deleteOldestRecord(symbol);
 	}
 
 	@Override
-	public void validateCountOfIexRealtimePrice() {
-		// TODO Auto-generated method stub
-		
+	public void removeFromIexRealtimePrice(String symbol) {
+		iexRealtimePriceRepository.deleteOldestRecord(symbol);
 	}
 
 	@Override
-	public void validateCountOfLatestPrice() {
-		// TODO Auto-generated method stub
-		
+	public void removeFromLatestPrice(String symbol) {
+		latestPriceRepository.deleteOldestRecord(symbol);
 	}
 }

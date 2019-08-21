@@ -7,7 +7,6 @@
 
 <jsp:include page="tags/header.jsp" >
   <jsp:param name="title" value="Home"/>
-  <jsp:param name="username" value="${user.getUsername()}" />
 </jsp:include>
 
 	<section class="stripe sansSerif" style="margin: 50px 0px 50px 0px;">
