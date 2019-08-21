@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.statistic.company.entity.Companies;
 import com.statistic.company.entity.Company;
 import com.statistic.company.repository.CompanyRepository;
 
@@ -61,7 +64,7 @@ public class CompanyStatisticServiceImpl implements ICompanyStatisticService {
 	}
 
 	@Override
-	public void SaveDataInDB(Company company) {
+	public void saveDataInDB(Company company) {
 		String symbol = company.getSymbol();
 		Company thisCompany = companyRepository.findBySymbol(symbol);
 		companyRepository.save(company);
@@ -99,6 +102,19 @@ public class CompanyStatisticServiceImpl implements ICompanyStatisticService {
 			priceService.addIexRealtimePrice(symbol, company.getIexRealtimePrice());
 			priceService.addLatestPrice(symbol, company.getLatestPrice());
 		}		
+	}
+
+	@Override
+	public Companies exportCompaniesToJSON(String[] symbolsArr) throws IOException {
+		Companies selectedCompanies = new Companies();
+		
+		for (int i = 0; i < symbolsArr.length; i++) {
+			selectedCompanies.setCompany(companyRepository.findBySymbol(symbolsArr[i]));
+		}
+		
+		Files.write(Paths.get("statistic.json"), selectedCompanies.toString().getBytes());
+		
+		return selectedCompanies;
 	}
 
 }

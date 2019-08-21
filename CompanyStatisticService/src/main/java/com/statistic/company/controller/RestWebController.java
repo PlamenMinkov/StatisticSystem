@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.statistic.company.entity.Companies;
 import com.statistic.company.entity.Company;
 import com.statistic.company.entity.RequestFields;
 import com.statistic.company.service.ICompanyStatisticService;
@@ -22,8 +23,6 @@ public class RestWebController {
 
 	@RequestMapping(value="/getSymbolStatistic", method=RequestMethod.POST)
 	public Company getResource(@RequestBody RequestFields requestFields) throws JSONException, IOException {
-		System.out.println(requestFields.getSymbol());
-		System.out.println(requestFields.getToken());
 		
 		String request = "https://cloud.iexapis.com/stable/stock/" + requestFields.getSymbol() + "/quote?token=" + requestFields.getToken() 
 							+ "&filter=symbol,companyName,calculationPrice,latestPrice,"
@@ -37,8 +36,17 @@ public class RestWebController {
 	@RequestMapping(value="/updateCompanyDataInDB", method=RequestMethod.POST)
 	public Company updateCompanyDataInDB(@RequestBody Company company) throws JSONException, IOException {
 		
-		statisticService.SaveDataInDB(company);
+		statisticService.saveDataInDB(company);
 		
 		return company;
+	}
+	
+	@RequestMapping(value="/createStatisticJson", method=RequestMethod.POST)
+	public Companies createStatisticJson(@RequestBody RequestFields requestFields) throws JSONException, IOException {
+		String symbols = requestFields.getSymbol();
+		symbols = symbols.substring(0, symbols.length() - 1);
+		String[] symbolsArr = symbols.split(",");
+				
+		return statisticService.exportCompaniesToJSON(symbolsArr);
 	}
 }

@@ -5,6 +5,7 @@ import java.io.Reader;
 
 import org.json.JSONException;
 
+import com.statistic.company.entity.Companies;
 import com.statistic.company.entity.Company;
 
 public interface ICompanyStatisticService {
@@ -12,5 +13,7 @@ public interface ICompanyStatisticService {
 	
 	Company readJsonFromUrl(String url) throws IOException, JSONException;
 	
-	void SaveDataInDB(Company company);
+	void saveDataInDB(Company company);
+	
+	Companies exportCompaniesToJSON(String[] symbolsArr) throws IOException;
 }

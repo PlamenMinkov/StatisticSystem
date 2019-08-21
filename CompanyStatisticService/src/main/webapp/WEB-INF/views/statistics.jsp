@@ -44,6 +44,10 @@
 							<tbody>
 							</tbody>
 						</table>
+						
+						<section>
+							<input type="button" id="exportData" class="btn btn-success" value="Export data in statistic.json">
+						</section>
 					</c:when>
 					<c:otherwise>
 						<div class="agileits-title"> 
@@ -51,10 +55,6 @@
 						</div>
 					</c:otherwise>
 				</c:choose>
-				
-				<c:if test="${not empty ddd}">
-			        
-				</c:if>
 				
 				<div class="col-md-3 agileits-team-grid">
 					<div class="team-info">
@@ -147,6 +147,16 @@
 		event.preventDefault();
 		$("#nextTime").val("");
 		timer.stop();
+	})
+	
+	$("#exportData").click(function(event) {
+		var cmpaniesSymbols = "";
+		
+		$(".companyRow").each(function() {
+			cmpaniesSymbols = cmpaniesSymbols + $(this).attr("id") + ",";
+		});
+		
+		createStatisticJson(cmpaniesSymbols);
 	})
 	
 </script>

@@ -74,3 +74,27 @@ function updateCompanyDataInDB(company) {
 		}
 	});
 }
+	
+	function createStatisticJson(symbolsStr) {
+		var dataJSON = {
+				symbol: symbolsStr,
+	            token: ""
+	        };
+		
+		$.ajax({
+			type : "POST",					
+			url : "request/createStatisticJson",
+			dataType:'json',
+			data: JSON.stringify(dataJSON),
+	        contentType: 'application/json',
+	        mimeType: 'application/json',
+			success : function(result) 
+			{
+				$.notify("Successful exporting statistic.json file!", {align:"center", verticalAlign:"top", type: "success"});
+			},
+			error : function(e) 
+			{
+				$.notify("Error on exporting json file!", {align:"center", verticalAlign:"top", type: "warning"});
+			}
+		});
+}
