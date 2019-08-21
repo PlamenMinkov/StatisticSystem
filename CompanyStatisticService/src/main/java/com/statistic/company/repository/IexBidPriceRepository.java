@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
@@ -17,6 +18,7 @@ public interface IexBidPriceRepository  extends PagingAndSortingRepository<IexBi
 {	
 	List<IexBidPrice> findBySymbol(String symbol);
 
+	@Modifying
 	@Query(value =  "DELETE FROM `iex_bid_price` WHERE symbol = :symbol ORDER BY `iex_bid_price_id` ASC LIMIT 1", nativeQuery = true)
 	Integer deleteOldestRecord(@Param("symbol") String symbol);
 }

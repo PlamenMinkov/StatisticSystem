@@ -144,12 +144,16 @@
 		
 		timer.set({ time : $("#nextTime").val() + "000", autostart : true });
 		$("#nextTime").val("");
+		
+		$.notify("The timer is started!", {align:"center", verticalAlign:"top", type: "success"});
 	})
 	
 	$("#removeTimeInterval").click(function(event) {
 		event.preventDefault();
 		$("#nextTime").val("");
 		timer.stop();
+		
+		$.notify("The timer is stoped!", {align:"center", verticalAlign:"top", type: "success"});
 	})
 	
 	$("#exportData").click(function(event) {

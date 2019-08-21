@@ -2,6 +2,7 @@ package com.statistic.company.repository;
 
 import javax.transaction.Transactional;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -15,6 +16,7 @@ public interface DelayedPriceRepository  extends CrudRepository<DelayedPrice, Lo
 {	
 	DelayedPrice findLastBySymbol(String symbol);
 	
+	@Modifying
 	@Query(value =  "DELETE FROM `iex_ask_price` WHERE symbol = :symbol ORDER BY `iex_ask_price_id` ASC LIMIT 1", nativeQuery = true)
 	Integer deleteOldestRecord(@Param("symbol") String symbol);
 }
