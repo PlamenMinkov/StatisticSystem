@@ -129,7 +129,7 @@ window.onload = function () {
 				text: "Iex Ask Prices History"
 			},
 			axisX:{
-				valueFormatString: "N",
+				valueFormatString: ".",
 				crosshair: {
 					enabled: true,
 					snapToDataPoint: true
@@ -167,7 +167,7 @@ window.onload = function () {
 				text: "Iex Bid History"
 			},
 			axisX:{
-				valueFormatString: "N",
+				valueFormatString: ".",
 				crosshair: {
 					enabled: true,
 					snapToDataPoint: true
@@ -205,7 +205,7 @@ window.onload = function () {
 				text: "Iex Realtime Prices History"
 			},
 			axisX:{
-				valueFormatString: "N",
+				valueFormatString: ".",
 				crosshair: {
 					enabled: true,
 					snapToDataPoint: true
