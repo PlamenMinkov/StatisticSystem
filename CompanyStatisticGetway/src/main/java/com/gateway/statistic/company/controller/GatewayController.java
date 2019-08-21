@@ -25,7 +25,7 @@ public class GatewayController  implements ErrorController {
 	{
 		String token = request.getParameter("token");
 
-		return "redirect:/statistic/" + token;
+		return "redirect:/statistic/validate/" + token;
 	}
 	
 	@RequestMapping("/error")

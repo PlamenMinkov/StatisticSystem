@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%-- <%@ page session="false" %> --%>
@@ -9,12 +10,13 @@
   <jsp:param name="username" value="${user.getUsername()}" />
 </jsp:include>
 
-	<section id="hero" class="stripe sansSerif">
-		<form action="${contextPath}/redirectToStatistic" method="POST">
+	<section class="stripe sansSerif" style="margin: 50px 0px 50px 0px;">
+		<form:form action="${contextPath}/redirectToStatistic" method="POST" class="searchForm" 
+							style="max-width: 500px; margin: 0px auto;">
 			<span>Enter your token:</span>
-			<input type="text" id="token" name="token">
-			<input type="submit" value="View Statistic">
-		</form>
+			<input type="text" id="token" name="token" placeholder="token">
+			<input type="submit" value="View Statistic"  class="btn btn-success" >
+		</form:form>
 	</section>
   
   <section class="stripe sansSerif">
